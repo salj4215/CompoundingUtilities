@@ -24,5 +24,36 @@ namespace CompoundingUtilities
         {
             InitializeComponent();
         }
+
+        private void btnCalc_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double dblInitQuan;
+                double dblAssay;
+                double dblWater;
+                double dblResult;
+
+                dblInitQuan = double.Parse(tboxInitialAmount.Text);
+                dblAssay = double.Parse(tboxPurity.Text);
+                dblWater = double.Parse(tboxWater.Text);
+
+                dblResult = dblInitQuan * (100 / dblAssay) * (100 / (100 - dblWater));
+                txtOutcome.Text = dblResult.ToString("0.0000") + " grams";
+            }
+            catch (Exception caught)
+            {
+                txtOutcome.Text = "Please enter valid numbers for the values above";
+
+            }
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            tboxInitialAmount.Text = String.Empty;
+            tboxPurity.Text = String.Empty;
+            tboxWater.Text = String.Empty;
+            txtOutcome.Text = String.Empty;
+        }
     }
 }
